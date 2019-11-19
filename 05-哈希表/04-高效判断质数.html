@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>判断质数</title>
+</head>
+<body>
+	<script type="text/javascript">
+		function isPrime(num) {
+			// 取num的平方
+			var temp = parseInt(Math.sqrt(num))
+			// 循环判断
+			for(var i = 2; i <= temp; i++) {
+				if (num % i == 0) {
+					return false
+				}
+			}
+			return true
+		}
+		alert(isPrime(3))
+		alert(isPrime(4))
+
+	</script>
+</body>
+</html>

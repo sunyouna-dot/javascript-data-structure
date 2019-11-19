@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>优先级队列</title>
+</head>
+<body>
+	<script type="text/javascript">
+		//封装优先级队列
+		function PriorityQueue(){
+            function QueueElement(element,priority){
+                this.element = element
+                this.priority = priority
+            }
+
+			//封装属性
+			this.items = []
+
+			//实现插入方法
+			PriorityQueue.prototype.enqueue = function (element, priority) {
+            //创建对象
+                var queueElement = new QueueElement(element,priority)
+                //判断队列是否为空
+                if(this.items.length == 0){
+                   this.items.push(queueElement)
+                }else {
+                    var added = false
+                    for(var i = 0; i < this.items.length;i++){
+                        if(queueElement.priority < this.items[i].priority){
+                            //插入到当前位置
+                            this.items.splice(i,0,queueElement)
+                            added = true
+                            break
+                        }
+                    }
+                    if(!added){
+                        this.items.push(queueElement)
+                    }
+                }
+            }
+
+
+			// 2.从队列删除前端元素
+			PriorityQueue.prototype.dequeue = function() {
+				return this.items.shift()
+			}
+			// 3.获取队列第一个元素
+			PriorityQueue.prototype.front = function() {
+				return this.items[0]
+			}
+
+			// 4.查看队列是否为空
+			PriorityQueue.prototype.isEmpty = function() {
+				return this.items.length == 0
+			}
+			// 5.查看队列长度
+			PriorityQueue.prototype.size = function() {
+				return this.items.length 
+			}
+			//toString
+			PriorityQueue.prototype.toString = function () {
+				var resultString=''
+				for(var i = 0; i < this.items.length; i++){
+					resultString += this.items[i].element + '-' + this.items[i].priority + ' '
+				}
+				return resultString 
+			}
+		}
+
+		//测试代码
+		var pq = new PriorityQueue()
+		pq.enqueue('abc', 12)
+		pq.enqueue('hdj', 21)
+		pq.enqueue('adc', 15)
+		pq.enqueue('aba', 14)
+
+		
+		alert(pq)
+	</script>
+</body>
+</html>

@@ -1,0 +1,105 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>栈结构</title>
+</head>
+<body>
+	<script type="text/javascript">
+		//封装栈类
+		function Stack () {
+			//栈中属性
+			this.items = []
+
+			//栈的相关操作
+			// 1.将元素压入栈
+			Stack.prototype.push = function (element) {
+				this.items.push(element)
+			}
+
+			// 2.从栈中取出元素
+			Stack.prototype.pop = function () {
+				return this.items.pop()
+			}
+
+			// 3.查看一下栈顶元素
+			Stack.prototype.peek = function () {
+				return this.items[this.items.length - 1]
+			}
+
+			// 4.判断栈是否为空
+			Stack.prototype.isEmpty = function () {
+				return this.items.length == 0 
+			}
+
+			// 5.获取栈中元素的个数
+			Stack.prototype.size = function () {
+				return this.items.length
+			}
+
+			// 6.toString() 方法
+			Stack.prototype.toString = function () {
+				var resultString = ''
+				for (var i = 0; i < this.items.length; i++) {
+					resultString = resultString + this.items[i] + ''
+				}
+				return resultString
+			}
+		}
+		// 栈的使用
+		// 添加
+		var s = new Stack()
+		s.push(22)
+		s.push(3)
+		s.push(44)
+		s.push(18)
+		console.log(s.items)
+
+		// 删除
+		s.pop()
+		s.pop()
+		console.log(s.items)
+
+		//查看栈顶元素
+		console.log(s.peek())
+
+		// 判断是否为空
+		console.log(s.isEmpty())
+
+		// 查看个数
+		console.log(s.size())
+
+		// toString
+		console.log(s.toString())
+
+
+		// 封装十进制转二进制
+		function dec2bin(decNumber) {
+			// 定义栈对象
+			var stack = new Stack()
+
+			// 循环操作
+			while(decNumber>0){
+				// 获取余数，放入栈中
+				stack.push(decNumber % 2)
+				// 获取整除后的结果，进行下一次运算
+				var decNumber = Math.floor(decNumber/2)
+			}
+			// 从栈中取出
+			var binaryString = ''
+			while(!stack.isEmpty()){
+				binaryString += stack.pop()
+			}
+			return binaryString
+		}
+		console.log(dec2bin(100))
+
+
+
+
+
+		
+
+	</script>
+</body>
+</html>
